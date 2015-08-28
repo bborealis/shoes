@@ -22,9 +22,13 @@ PHP, PHPUnit, Silex, Twig, and MySQL
 
 ## MySQL commands
 CREATE DATABASE shoestore;
+
 USE shoestore;
+
 CREATE TABLE stores (name VARCHAR (255), id serial PRIMARY KEY);
+
 CREATE TABLE brands (name VARCHAR (255), id serial PRIMARY KEY);
+
 CREATE TABLE stores_brands (store_id INT, brand_id INT, id serial PRIMARY KEY);
 
 ### Legal
