@@ -17,8 +17,8 @@
                 <h3>Here are the available brands:</h3>
                 <ul>
                     {% for brand in brands %}
-
-                        <li>{{ brand.getName }}</li>
+                        <li><a href="/brand/{{ brand.getId }}">
+                            {{ brand.getName }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}
