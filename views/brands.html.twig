@@ -8,6 +8,7 @@
             <h1>Brands</h1>
 
             <form action="/brands" method="post">
+                <label for="name">New Brand Name:</label>
                 <input id="name" name="name" placeholder="Add a new brand">
                 <button type="submit">Add</button>
             </form>
@@ -16,16 +17,11 @@
                 <h3>Here are the available brands:</h3>
                 <ul>
                     {% for brand in brands %}
+
                         <li>{{ brand.getName }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
-
-
-
-
-
-
 
 
             <form action="/">

@@ -10,7 +10,7 @@
 
             <form action="/add_brand" method="post">
                 <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
-                <label for="brand_id">Select a brand</label>
+                <label for="brand_id">Add a new brand for this store</label>
                 <select name="brand_id" type="text">
                         {% for brand in all_brands %}
                             <option value="{{ brand.getId }}">{{ brand.getName }}</option>
@@ -30,7 +30,11 @@
                 </ul>
             {% endif %}
 
+            <br>
 
+            <form action="/store/{{ store.getId }}/edit">   
+                <button type="submit">Change Store Name</button>
+            </form>
 
             <form action="/">
             <button type="submit">Home</button>

@@ -20,7 +20,7 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
-    //homepage
+
     $app->get("/", function() use($app) {
         return $app['twig']->render('index.html.twig');
     });
@@ -29,7 +29,7 @@
         return $app['twig']->render('stores.html.twig', array('stores'=>Store::getAll()));
     });
 
-    $app->post("stores", function() use ($app) {
+    $app->post("/stores", function() use ($app) {
         $store = new Store($_POST['name']);
         $store->save();
         return $app['twig']->render('stores.html.twig', array('stores'=>Store::getAll()));
@@ -45,7 +45,7 @@
         return $app['twig']->render('brands.html.twig', array('brands'=>Brand::getAll()));
     });
 
-    $app->post("brands", function() use ($app) {
+    $app->post("/brands", function() use ($app) {
         $brand = new Brand($_POST['name']);
         $brand->save();
         return $app['twig']->render('brands.html.twig', array('brands'=>Brand::getAll()));
@@ -58,7 +58,23 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'stores' => Store::getAll(), 'brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
+    $app->get("/store/{id}/edit", function($id) use($app) {
+        $store = store::find($id);
+        return $app['twig']->render('store_edit.html.twig', array('store' => $store));
+    });
 
+    $app->patch("/store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $brands = $store->getBrands();
+        $store->update($_POST['name']);
+        return $app['twig']->render('store_edit.html.twig', array('store'=> $store, 'brands' => $store->getBrands()));
+    });
+
+    $app->delete("/store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $store->delete();
+        return $app['twig']->render("stores.html.twig", array('stores'=> Store::getAll()));
+    });
 
 
 
