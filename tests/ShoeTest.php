@@ -5,31 +5,31 @@
     * @backupStaticAttributes disabled
     */
 
-    require_once "src/Shoe.php";
+    require_once "src/Store.php";
 
     $server = 'mysql:host=localhost;dbname=shoestore_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    class ShoeTest extends PHPUnit_Framework_TestCase
+    class StoreTest extends PHPUnit_Framework_TestCase
     {
 
-        // protected function tearDown()
-        // {
-        //     Shoe::deleteAll();
-        //
-        // }
+        protected function tearDown()
+        {
+            Store::deleteAll();
+
+        }
 
         function test_getName()
         {
             //Arrange
-            $name = "Nike";
+            $name = "Clogs-N-More";
             $id = 1;
-            $test_author = new Shoe($name, $id);
+            $test_store = new Store($name, $id);
 
             //Act
-            $result = $test_author->getName();
+            $result = $test_store->getName();
 
             //Assert
             $this->assertEquals($name, $result);
@@ -38,16 +38,49 @@
         function testSetName()
         {
             //Arrange
-            $name = "Keen";
+            $name = "Shoe Depot";
             $id = 1;
-            $test_author = new Shoe($name, $id);
+            $test_store = new Store($name, $id);
 
             //Act
-            $test_author->setName("Nike");
-            $result = $test_author->getName();
+            $test_store->setName("Clogs-N-More");
+            $result = $test_store->getName();
 
             //Assert
-            $this->assertEquals("Nike", $result);
+            $this->assertEquals("Clogs-N-More", $result);
         }
+
+        function test_getId()
+        {
+            //Arrange
+            $name = "Clogs-N-More";
+            $id = 1;
+            $test_store = new Store($name, $id);
+
+            //Act
+            $result = $test_store->getId();
+
+            //Assert
+            $this->assertEquals($id, $result);
+        }
+
+        function test_Save()
+        {
+            //Arrange
+            $name = "Clogs-N-More";
+            $id = 1;
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            //Act
+            $result = Store::getAll();
+
+            //Assert
+            $this->assertEquals($test_store, $result[0]);
+        }
+
+
+
+
     }
 ?>
