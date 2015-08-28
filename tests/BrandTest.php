@@ -139,7 +139,7 @@
             $this->assertEquals($test_brand2, $result);
         }
 
-        function testAddBrand()
+        function testAddStore()
         {
             //Arrange
             $name = "Clogs-N-More";
@@ -159,7 +159,7 @@
             $this->assertEquals($test_brand->getStores(),[$test_store]);
         }
 
-        function testGetBrands()
+        function testGetStores()
         {
             //Arrange
             $name = "Clogs-N-More";

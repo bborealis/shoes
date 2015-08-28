@@ -8,6 +8,19 @@
             <h1>{{ store.getName }}</h1>
 
 
+            <form action="/add_brand" method="post">
+                <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
+                <label for="brand_id">Select a brand</label>
+                <select name="brand_id" type="text">
+                        {% for brand in all_brands %}
+                            <option value="{{ brand.getId }}">{{ brand.getName }}</option>
+
+                        {% endfor %}
+                </select>
+                <button type="submit">Add</button>
+            </form>
+
+
             {% if brands is not empty %}
                 <h3>{{ store.getName }} carries the following brands:</h3>
                 <ul>
@@ -16,11 +29,6 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-
-
-
-
-
 
 
 
