@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Brands</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Brands</h1>
+
+            <form action="/brands" method="post">
+                <input id="name" name="name" placeholder="Add a new brand">
+                <button type="submit">Add</button>
+            </form>
+
+            {% if brands is not empty %}
+                <h3>Here are the available brands:</h3>
+                <ul>
+                    {% for brand in brands %}
+                        <li>{{ brand.getName }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+
+
+
+
+
+
+
+            <form action="/">
+            <button type="submit">Home</button>
+        </form>
+
+
+        </div>
+    </body>
+</html>

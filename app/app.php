@@ -41,5 +41,17 @@
         return $app['twig']->render('store.html.twig', array('store'=>$store, 'brands'=>$brands, 'all_brands' => Brand::getAll()));
     });
 
+    $app->get("/brands", function() use ($app) {
+        return $app['twig']->render('brands.html.twig', array('brands'=>Brand::getAll()));
+    });
+
+    $app->post("brands", function() use ($app) {
+        $brand = new Brand($_POST['name']);
+        $brand->save();
+        return $app['twig']->render('brands.html.twig', array('brands'=>Brand::getAll()));
+    });
+
+
+
     return $app;
 ?>
