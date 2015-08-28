@@ -76,6 +76,12 @@
         return $app['twig']->render("stores.html.twig", array('stores'=> Store::getAll()));
     });
 
+    $app->post("/delete_stores", function() use ($app) {
+        $GLOBALS['DB']->exec("DELETE FROM stores_brands;");
+        Store::deleteAll();
+        return $app['twig']->render('stores.html.twig', array('stores'=> Store::getAll()));
+    });
+
 
 
     return $app;
