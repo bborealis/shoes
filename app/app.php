@@ -25,5 +25,21 @@
         return $app['twig']->render('index.html.twig');
     });
 
+    $app->get("/stores", function() use ($app) {
+        return $app['twig']->render('stores.html.twig', array('stores'=>Store::getAll()));
+    });
+
+    $app->post("stores", function() use ($app) {
+        $store = new Store($_POST['name']);
+        $store->save();
+        return $app['twig']->render('stores.html.twig', array('stores'=>Store::getAll()));
+    });
+
+    $app->get("/store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $brands = $store->getBrands();
+        return $app['twig']->render('store.html.twig', array('store'=>$store, 'brands'=>$brands, 'all_brands' => Brand::getAll()));
+    });
+
     return $app;
 ?>

@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>{{ store.getName }}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ store.getName }}</h1>
+
+
+            {% if brands is not empty %}
+                <h3>{{ store.getName }} carries the following brands:</h3>
+                <ul>
+                    {% for brand in brands %}
+                        <li>{{ brand.getName }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+
+
+
+
+
+
+
+            <form action="/">
+            <button type="submit">Home</button>
+        </form>
+
+
+        </div>
+    </body>
+</html>

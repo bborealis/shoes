@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Stores</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Stores</h1>
+
+            <form action="/stores" method="post">
+                <input id="name" name="name" placeholder="Add a new store">
+                <button type="submit">Add</button>
+            </form>
+
+            {% if stores is not empty %}
+                <h3>Here are the available stores:</h3>
+                <ul>
+                    {% for store in stores %}
+                        <li><a href="/store/{{ store.getId }}">
+                            {{ store.getName }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+
+
+
+
+
+
+
+            <form action="/">
+            <button type="submit">Home</button>
+        </form>
+
+
+        </div>
+    </body>
+</html>
